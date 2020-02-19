@@ -1,0 +1,38 @@
+{
+  "name": "nodejs-typescript-setup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/server",
+  "scripts": {
+  "start": "concurrently \"npm run webpack\" \"npm run nodemon\" ",
+    "nodemon": "nodemon src/Server.ts",
+    "webpack": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "typscript",
+    "mongodb",
+    "react"
+  ],
+  "author": "alan",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/mongoose": "^5.7.1",
+    "@types/node": "^13.7.2",
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.2",
+    "ts-loader": "^6.2.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.1",
+    "morgan": "^1.9.1"
+  }
+}

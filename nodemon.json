@@ -1,0 +1,14 @@
+{
+    "watch": ["src"],
+    "verbose": "true",
+    "ignore": [".git", "node_modules/.*"],
+    "ext": "ts, json",
+    "env": {
+        "database_name": "",
+        "database_cluster": "",
+        "database_user": "",    
+        "database_password": "",
+        "port": "8000"
+    }
+    
+}
