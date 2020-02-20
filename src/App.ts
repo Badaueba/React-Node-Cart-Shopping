@@ -5,6 +5,9 @@ import * as mongoose from 'mongoose';
 import mongooseURI from './config/MongooseURI';
 const port = process.env.port || 8000;
 
+import productRouter from "./features/product/Product.router";
+import orderRouter from "./features/order/Order.route";
+
 class ExpressApplication {
     public app: Express.Application;
 
@@ -25,6 +28,7 @@ class ExpressApplication {
     }
 
     private connectDatabase(): Promise<mongoose.Mongoose> {
+        console.log(mongooseURI);
         return mongoose.connect(mongooseURI, {useNewUrlParser: true, useUnifiedTopology: true});
     }
 
@@ -44,6 +48,8 @@ class ExpressApplication {
         this.app.get("/", (req, res) => {
             res.send("hello hello")
         })
+        this.app.use("/products", productRouter)
+        this.app.use("/orders", orderRouter)
     }
 
 }
