@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/server",
   "scripts": {
-  "start": "concurrently \"npm run webpack\" \"npm run nodemon\" ",
+    "start": "concurrently \"npm run webpack\" \"npm run nodemon\" ",
     "nodemon": "nodemon src/Server.ts",
     "webpack": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
