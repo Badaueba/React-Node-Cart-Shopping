@@ -1,8 +1,20 @@
-## Nodejs + Typescript + MongoDB + Webpack 
+# Simple Nodejs Api + React client with cart shopping Features
+
+ - Nodejs + Typescript + MongoDB + Webpack + React 
 
 
-- Edit nodemon.json with env props
+**Run:**
 
-- npm i 
 
-- npm start
+
+> cd client
+
+> npm install
+
+> cd ..
+
+> npm install 
+
+> npm start
+
+- Browser will open in Localhost:3000
