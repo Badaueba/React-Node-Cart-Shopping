@@ -4,9 +4,10 @@
   "description": "",
   "main": "dist/server",
   "scripts": {
-    "start": "concurrently \"npm run webpack\" \"npm run nodemon\" ",
+    "start": "concurrently  \"npm run start-client\" \"npm run webpack\" \"npm run nodemon\" ",
     "nodemon": "nodemon src/Server.ts",
     "webpack": "webpack",
+    "start-client": "node start-client.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -26,7 +27,7 @@
     "ts-loader": "^6.2.1",
     "ts-node": "^8.6.2",
     "typescript": "^3.7.5",
-    "webpack": "^4.41.6",
+    "webpack": "^4.41.5",
     "webpack-cli": "^3.3.11",
     "webpack-node-externals": "^1.7.2"
   },
