@@ -6,9 +6,29 @@ import OrderInterface from './Order.iterface'
 
 class OrderController {
 
-    public async get(req: Request, res: Response): Promise<Response> {
-        const orders = await Order.find()
-        return res.json(orders)
+    public async get(req: Request, res: Response) {
+        try {
+
+            const query = Order.find()
+                .populate({
+                    path: "products.product", 
+                    populate: {
+                        path: "product",
+                        model: "product",
+                    },
+                })
+
+            let orders = await query.exec();
+            orders = orders.map(order => {
+                order.price = orderHelper.makeOrderPice(order)
+                return order
+            })
+            return res.json(orders)
+        }
+        catch(err) {
+            console.log(err)
+            res.json(err)
+        }
     }
 
     public async getOne(req: Request, res: Response): Promise<Response> {
@@ -28,15 +48,17 @@ class OrderController {
     }
 
     public async post(req: Request, res: Response) : Promise<Response> {
+        
         if (!req.body['order']) {
             return res.json({err: "There is no data to create"})
         }
         try {
             const newOrder = new Order({
                 ...req.body['order']
-            })    
+            })
+            console.log(newOrder);
             const created = await Order.create(newOrder)
-            return res.send("Order created!")
+            return res.json("Order created!")
         }
         catch(err) {
             console.log(err)
@@ -69,7 +91,6 @@ class OrderController {
         }
         try {
             const order = await orderHelper.findOrder({_id : req.params["_id"], finished: false})
-            console.log("put", order);
             order.products = req.body["order"]["products"]
             const updated = await order.save()
             return res.send({
@@ -79,7 +100,7 @@ class OrderController {
         }
         catch(err) {
             console.log(err)
-            return res.json({err: "Product not found"})
+            return res.json({err: "Order not found"})
         }
 
     }
